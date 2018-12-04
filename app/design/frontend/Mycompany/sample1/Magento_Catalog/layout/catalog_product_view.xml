@@ -7,14 +7,12 @@
 -->
 <page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <referenceContainer name="content">
-            <referenceBlock name="product.info.details">
-                <block class="Magento\Framework\View\Element\Template" name="product.customtab" as="customtab" template="Magento_Catalog::customtab.phtml" group="detailed_info">
-                    <arguments>
-                        <argument translate="true" name="title" xsi:type="string">Custom Tab</argument>
-                    </arguments>
-                </block>
-            </referenceBlock>
-        </referenceContainer>
+        <referenceBlock name="product.info.details">
+            <block class="Magento\Framework\View\Element\Template" name="product.customtab" as="customtab" template="Magento_Catalog::customtab.phtml" group="detailed_info">
+                <arguments>
+                    <argument translate="true" name="title" xsi:type="string">Custom Tab</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
     </body>
 </page>
