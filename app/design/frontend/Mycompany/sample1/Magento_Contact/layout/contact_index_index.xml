@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Contact Us - Mycompany</title>
+        <!--<link src="js/alert_contact.js"/> NE PAS FAIRE -->
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Magento\Framework\View\Element\Template" name="mycompany_contact_supplement" template="Magento_Contact::addblock.phtml"></block>
+            <block class="Magento\Framework\View\Element\Template" name="mycompany_contact_supplement_jsinit" template="Magento_Contact::js_init.phtml"></block>
+            <block class="Magento\Framework\View\Element\Template" name="mycompany_contact_supplement2" template="Magento_Contact::addblock2.phtml" before="contactForm"></block>
+        </referenceContainer>
+    </body>
+</page>
