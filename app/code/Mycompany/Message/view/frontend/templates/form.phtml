@@ -1,0 +1,12 @@
+<?php /** @var $block Mycompany\Message\Block\MessageForm */ ?>
+
+<?php $form = $block->getMessageForm(); ?>
+
+<?php var_dump($block->getFormData()); ?>
+
+<form action="" method="post">
+    Title : <input type="text" name="title" value="" /><br />
+    Content : <input type="text" name="content" value="" /><br/>
+    <br/>
+    <input type="submit"/>
+</form>

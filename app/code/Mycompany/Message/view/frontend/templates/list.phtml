@@ -1,0 +1,16 @@
+<?php /** @var $block Mycompany\Message\Block\MessageList */ ?>
+<?php $messageList = $block->getMessageSearchResult() ?>
+
+<div>
+    <a href="<?php echo $block->getUrl('*/*/create'); ?>">Create</a>
+</div>
+
+<?php foreach ($messageList->getItems() as $message): ?>
+<div>
+    <span><?php echo $block->escapeHtml($message->getTitle()); ?></span> - 
+    <span><?php echo $message->getContent(); ?></span> - 
+    <a href="<?php echo $block->getUrl('*/*/update', ['id' => $message->getId()]); ?>">Update</a> - 
+    <a href="<?php echo $block->getUrl('*/*/delete', ['id' => $message->getId()]); ?>">Delete</a>
+</div>
+
+<?php endforeach; ?>

@@ -6,4 +6,4 @@
 
 use \Magento\Framework\Component\ComponentRegistrar;
 
-ComponentRegistrar::register(ComponentRegistrar::THEME, 'backend/Mycompany/Message', __DIR__);
+ComponentRegistrar::register(ComponentRegistrar::MODULE, 'Mycompany_Message', __DIR__);
