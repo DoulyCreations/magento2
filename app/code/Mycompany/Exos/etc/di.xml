@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Contact\Controller\Index\Index"
+                type="Mycompany\Exos\Controller\Contact\Index\Index" />
+    <type name="Magento\Contact\Controller\Index\Index">
+        <plugin name="mycompanyExosPouet3OnContact" type="Mycompany\Exos\Plugin\Pouet3OnContactPlugin"/>
+    </type>
+</config>

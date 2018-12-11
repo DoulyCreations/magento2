@@ -2,16 +2,22 @@
 
 namespace Mycompany\Message\Controller\Message;
 
-class Delete extends \Magento\Framework\App\Action\Action
+use Magento\Framework\App\Action\Context;
+use Mycompany\Message\Api\MessageRepositoryInterface;
+use \Magento\Framework\Message\ManagerInterface;
+
+class Delete extends \Mycompany\Message\Controller\Message
 {
-    protected $messageRepository;
+    protected $messageManagement;
     
     public function __construct(
-        \Magento\Framework\App\Action\Context $context,
-        \Mycompany\Message\Api\MessageRepositoryInterface $messageRepository
+        Context $context,
+        MessageRepositoryInterface $messageRepository,
+        \Magento\Framework\Api\Search\SearchCriteriaBuilder $searchCriteriaBuilder,
+        ManagerInterface $messageManagement
     ) {
-        parent::__construct($context);
-        $this->messageRepository = $messageRepository;
+        parent::__construct($context, $messageRepository, $searchCriteriaBuilder);
+        $this->messageManagement = $messageManagement;
     }
 
     public function execute()
@@ -20,12 +26,14 @@ class Delete extends \Magento\Framework\App\Action\Action
         
         if($messageId) {
             $this->messageRepository->deleteById($messageId);
-            // TODO : Ajout d'un message ?
-            $this->_redirect('mycompany_message/message/index');
-            //$message = $this->messageRepository->getById($messageId);
-            //return $this->resultFactory->create(\Magento\Framework\Controller\ResultFactory::TYPE_PAGE);
+            $this->messageManagement->addSuccess('Message '.$messageId.' supprimé');
         } else {
-            $this->_redirect('mycompany_message/message/index');
+            $this->messageManagement->addError('Message '.$messageId.' introuvable');
         }
+        
+        $resultRedirect = $this->resultFactory->create(\Magento\Framework\Controller\ResultFactory::TYPE_REDIRECT);
+        $resultRedirect->setPath('*/*/index');
+        
+        return $resultRedirect;
     }
 }

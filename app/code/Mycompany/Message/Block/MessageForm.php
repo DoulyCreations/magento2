@@ -20,6 +20,12 @@ class MessageForm extends \Magento\Framework\View\Element\Template
     
     public function getMessageForm()
     {
+        $messageId = $this->getRequest()->getParam('id');
+        
+        if($messageId) {
+            return $this->messageRepository->getById($messageId);
+        }
+        
         // getlayout
         
         //return $this->messageRepository->getList($this->searchCriteriaBuilder->create());

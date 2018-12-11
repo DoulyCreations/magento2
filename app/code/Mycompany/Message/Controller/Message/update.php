@@ -2,30 +2,45 @@
 
 namespace Mycompany\Message\Controller\Message;
 
-class Update extends \Magento\Framework\App\Action\Action
-{
-    protected $messageRepository;
-    
-    public function __construct(
-        \Magento\Framework\App\Action\Context $context,
-        \Mycompany\Message\Api\MessageRepositoryInterface $messageRepository
-    ) {
-        parent::__construct($context);
-        $this->messageRepository = $messageRepository;
-    }
+use Magento\Framework\App\Action\Context;
+use Mycompany\Message\Api\MessageRepositoryInterface;
+use \Magento\Framework\Api\Search\SearchCriteriaBuilder;
+use \Magento\Framework\Message\ManagerInterface;
 
+class Update extends \Mycompany\Message\Controller\Message
+{
+    protected $messageManagement;
+
+    public function __construct(
+        Context $context,
+        MessageRepositoryInterface $messageRepository,
+        SearchCriteriaBuilder $searchCriteriaBuilder,
+        ManagerInterface $messageManagement
+    )
+    {
+        parent::__construct($context, $messageRepository, $searchCriteriaBuilder);
+        $this->messageManagement = $messageManagement;
+    }
+    
     public function execute()
     {
-        // TODO : IF POST > MAJ + Redirect ?
-        
-        
         $messageId = $this->getRequest()->getParam('id');
         
-        if($messageId) {
-            $message = $this->messageRepository->getById($messageId);
-            return $this->resultFactory->create(\Magento\Framework\Controller\ResultFactory::TYPE_PAGE);
-        } else {
-            $this->_redirect('mycompany_message/message/index');
+        $dataMessage = $this->messageRepository->getById($messageId);
+
+        if ($this->getRequest()->isPost()) {
+            $dataMessage->setTitle($this->getRequest()->getParam('title'));
+            $dataMessage->setContent($this->getRequest()->getParam('content'));
+            $this->messageRepository->save($dataMessage);
+            
+            $this->messageManagement->addSuccess('Save OK');
+            
+            $resultRedirect = $this->resultFactory->create(\Magento\Framework\Controller\ResultFactory::TYPE_REDIRECT);
+            $resultRedirect->setPath('*/*/index');
+
+            return $resultRedirect;
         }
+
+        return $this->resultFactory->create(\Magento\Framework\Controller\ResultFactory::TYPE_PAGE);
     }
 }

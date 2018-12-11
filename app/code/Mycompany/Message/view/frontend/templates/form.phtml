@@ -2,11 +2,12 @@
 
 <?php $form = $block->getMessageForm(); ?>
 
-<?php var_dump($block->getFormData()); ?>
-
 <form action="" method="post">
-    Title : <input type="text" name="title" value="" /><br />
-    Content : <input type="text" name="content" value="" /><br/>
+    Title : <input type="text" name="title" value="<?php echo $form ? $form->getTitle() : null; ?>" /><br />
+    Content : <input type="text" name="content" value="<?php echo $form ? $form->getContent() : null; ?>" /><br/>
     <br/>
     <input type="submit"/>
 </form>
+
+<br />
+<a href="<?php echo $block->getUrl('*/*/index'); ?>">Retour<a>

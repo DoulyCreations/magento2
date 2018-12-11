@@ -2,7 +2,7 @@
 
 namespace Mycompany\Message\Controller\Message;
 
-class Index extends \Magento\Framework\App\Action\Action
+class Index extends \Mycompany\Message\Controller\Message
 {
     
     public function execute()
