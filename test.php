@@ -19,3 +19,19 @@ for($i=1; $i <= 10; $i++) {
     $dataMessage->setContent('Content '.$i);
     $messageRepository->save($dataMessage);
 }
+
+
+/////////////////////////
+// Méthode sans le service : Triple Method
+$messageFactory = $objectManager->get('\Mycompany\Message\Model\MessageFactory');
+$message = $messageFactory->create();
+$message->setTitle('1g51er51gre');
+$message->getResource()->save($message);
+//$message->getResource()->load($message, $messageId);
+
+
+
+// Collection :
+$collection = $this->messageCollectionFactory->create();
+$collection->addFieldToFilter('content', ['in' => 'toto']);
+$collection->load();

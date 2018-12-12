@@ -14,6 +14,7 @@ abstract class Message extends \Magento\Framework\App\Action\Action
 {
     protected $messageRepository;
     protected $searchCriteriaBuilder;
+    private $scopeConfig;
 
     /**
      * @param Context $context
@@ -22,11 +23,13 @@ abstract class Message extends \Magento\Framework\App\Action\Action
     public function __construct(
         Context $context,
         MessageRepositoryInterface $messageRepository,
-        \Magento\Framework\Api\Search\SearchCriteriaBuilder $searchCriteriaBuilder
+        \Magento\Framework\Api\Search\SearchCriteriaBuilder $searchCriteriaBuilder,
+        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
     ) {
         parent::__construct($context);
         $this->messageRepository = $messageRepository;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
+        $this->scopeConfig = $scopeConfig;
     }
 
     /**
@@ -38,6 +41,10 @@ abstract class Message extends \Magento\Framework\App\Action\Action
      */
     public function dispatch(RequestInterface $request)
     {
+        if(!$this->scopeConfig->getValue('mycompany_message/message/enabled')) {
+            throw new NotFoundException(__('Module indisponible dsl ;)'));
+        }
+        
         if (!$this->messageRepository->getList($this->searchCriteriaBuilder->create())) {
             throw new NotFoundException(__('No Results...'));
         }

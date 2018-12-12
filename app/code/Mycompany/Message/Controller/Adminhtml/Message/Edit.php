@@ -75,9 +75,9 @@ class Edit extends Action
         // 1. Get ID and create model
         $id = $this->getRequest()->getParam('id');
         $dataModel = null;
-        if ($id) {
+        //if ($id) {
             $dataModel = $this->messageRepository->getById($id);
-        }
+        //}
         if(empty($dataModel) || !$dataModel->getId()) {
         	$dataModel = $this->dataMessageFactory->create();
         }
@@ -85,6 +85,7 @@ class Edit extends Action
         // 2. Set entered data if was error when we do save
         $data = $this->_session->getFormData(true);
         if (!empty($data)) {
+            // dataobjetctHelper:l Permet d'éviter les setTitle, setDescription, ...
             $this->dataObjectHelper->populateWithArray(
         		$dataMessage,
         		$data,
