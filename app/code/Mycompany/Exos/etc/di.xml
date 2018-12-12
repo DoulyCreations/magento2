@@ -5,4 +5,17 @@
     <type name="Magento\Contact\Controller\Index\Index">
         <plugin name="mycompanyExosPouet3OnContact" type="Mycompany\Exos\Plugin\Pouet3OnContactPlugin"/>
     </type>
+    
+    <type name="Magento\CatalogSearch\Controller\Advanced\Index">
+        <plugin name="mycompanyCatalogSearchAdvancedIndex" type="Mycompany\Exos\Plugin\CatalogSearchAdvancedIndexPlugin"/>
+    </type>
+    <type name="Magento\Customer\Controller\Account\Logout">
+        <plugin name="mycompanyCustomerAccountLogout" type="Mycompany\Exos\Plugin\CustomerAccountLogoutPlugin"/>
+    </type>
+    <!--<type name="Magento\Review\Controller\Product\Post">
+        <plugin name="mycompanyReviewProductPost" type="Mycompany\Exos\Plugin\ReviewProductPostPlugin"/>
+    </type>-->
+    <type name="Magento\Review\Model\Review">
+        <plugin name="mycompanySaveReview" type="Mycompany\Exos\Plugin\SaveReviewPlugin"/>
+    </type>
 </config>
