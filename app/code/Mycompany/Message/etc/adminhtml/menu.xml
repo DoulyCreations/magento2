@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
+    <menu>
+        <add id="Mycompany_Message::message" title="Mycompany Message" module="Mycompany_Message" sortOrder="40" resource="Mycompany_Message::message"/>
+        <add id="Mycompany_Message::manage" title="Message Management" module="Mycompany_Message" sortOrder="10" parent="Mycompany_Message::message" action="mycompany_message/message/index/" resource="Mycompany_Message::manage"/>
+    </menu>
+</config>
